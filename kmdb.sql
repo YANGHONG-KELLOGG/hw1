@@ -200,7 +200,7 @@ VALUES ("Bruce Wayne"),
 .print ""
 
 -- The SQL statement for the movies output
-.width 20
+.width 25 10 15 20
 
 SELECT movies.title, movies.year_released, movies.mpaa_rating, studios.name
 FROM movies INNER JOIN studios
@@ -222,4 +222,4 @@ INNER JOIN actors ON casts.actor_id = actors.id
 INNER JOIN portrays ON casts.portray_id = portrays.id;
 
 
--- YANG HONG; 1/23/2023 2:10 PM;
+-- YANG HONG; 1/23/2023 2:20 PM;
