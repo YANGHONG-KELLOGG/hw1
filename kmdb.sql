@@ -143,9 +143,55 @@ CREATE TABLE portrays (
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
 
+INSERT INTO movies ("title","year_released","mpaa_rating","studio_id")
+VALUES ("Batman Begins","2005","PG-13","1"),
+      ("The Dark Knight","2008","PG-13","1"),
+      ("The Dark Knight Rises","2012","PG-13","1");
 
+INSERT INTO studios ("name")
+VALUES ("Warner Bros.");
 
+INSERT INTO actors ("first_name","last_name")
+VALUES ("Christian","Bale"),
+       ("Michael","Caine"),
+       ("Liam","Neeson"),
+       ("Katie","Holmes"),
+       ("Gary","Oldman"),
+       ("Heath","Ledger"),
+       ("Aaron","Eckhart"),
+       ("Maggie","Gyllenhaal"),
+       ("Tom","Hardy"),
+       ("Joseph","Gordon-Levitt"),
+       ("Anne","Hathaway");
+       
+INSERT INTO casts ("movie_id","actor_id","portray_id")
+VALUES ("1","1","1"),
+       ("1","2","2"),
+       ("1","3","3"),
+       ("1","4","4"),
+       ("1","5","5"),
+       ("2","1","1"),
+       ("2","6","6"),
+       ("2","7","7"),
+       ("2","2","2"),
+       ("2","8","4"),
+       ("3","1","1"),
+       ("3","5","5"),
+       ("3","9","8"),
+       ("3","10","9"),
+       ("3","11","10");
 
+INSERT INTO portrays ("name")
+VALUES ("Bruce Wayne"),
+       ("Alfred"),
+       ("Ra's Al Ghul"),
+       ("Rachel Dawes"),
+       ("Commissioner Gordon"),
+       ("Joker"),
+       ("Harvey Dent"),
+       ("Bane"),
+       ("John Blake"),
+       ("Selina Kyle");
 
 
 -- Prints a header for the movies output
@@ -154,7 +200,12 @@ CREATE TABLE portrays (
 .print ""
 
 -- The SQL statement for the movies output
--- TODO!
+.width 20
+
+SELECT movies.title, movies.year_released, movies.mpaa_rating, studios.name
+FROM movies INNER JOIN studios
+on movies.studio_id = studios.id;
+
 
 -- Prints a header for the cast output
 .print ""
@@ -164,4 +215,11 @@ CREATE TABLE portrays (
 
 
 -- The SQL statement for the cast output
--- TODO!
+SELECT movies.title, actors.first_name, actors.last_name, portrays.name
+FROM casts 
+INNER JOIN movies ON casts.movie_id = movies.id
+INNER JOIN actors ON casts.actor_id = actors.id
+INNER JOIN portrays ON casts.portray_id = portrays.id;
+
+
+-- YANG HONG; 1/23/2023 2:10 PM;
